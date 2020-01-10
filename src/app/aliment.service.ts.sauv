@@ -1,0 +1,174 @@
+import {
+  Injectable
+} from '@angular/core';
+// import {HttpClient} from '/@angular/common/http';
+import {
+  Aliment
+} from './aliment';
+import {
+  SelectedAliment
+} from './selectedAliment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AlimentService {
+
+  selectedAliments: SelectedAliment[] = [];
+  globalCharge: number = 0;
+
+  myAliments: Aliment[] = [{
+      "ig": 110,
+      "carbs": 4.5,
+      "name": "Bière"
+    },
+    {
+      "ig": 100,
+      "carbs": 100,
+      "name": "Glucose"
+    },
+    {
+      "ig": 95,
+      "carbs": 73,
+      "name": "Farine de riz blanc"
+    },
+    {
+      "ig": 95,
+      "carbs": 86.3,
+      "name": "Fécule de pomme de terre (amidon)"
+    },
+    {
+      "ig": 95,
+      "carbs": 20,
+      "name": "Pomme de terre au four"
+    },
+    {
+      "ig": 95,
+      "carbs": 20,
+      "name": "Pomme de terre frites"
+    },
+    {
+      "ig": 90,
+      "carbs": 50,
+      "name": "Pain blanc"
+    },
+    {
+      "ig": 90,
+      "carbs": 80,
+      "name": "Riz glutineux, riz agglutinant"
+    },
+    {
+      "ig": 85,
+      "carbs": 2.6,
+      "name": "Carottes (cuites)"
+    },
+    {
+      "ig": 85,
+      "carbs": 4.6,
+      "name": "Céleri rave (cuit)"
+    },
+    {
+      "ig": 85,
+      "carbs": 75,
+      "name": "Corn Flakes, flocons de mais"
+    },
+    {
+      "ig": 85,
+      "carbs": 76,
+      "name": "Farine de blé blanche"
+    },
+    {
+      "ig": 85,
+      "carbs": 21.9,
+      "name": "Gâteau de riz"
+    },
+    {
+      "ig": 85,
+      "carbs": 89.2,
+      "name": "Maizena (amidon de maïs)"
+    },
+    {
+      "ig": 85,
+      "carbs": 3.8,
+      "name": "Navet (cuit)"
+    },
+    {
+      "ig": 85,
+      "carbs": 50.7,
+      "name": "Pain très blanc, pain de mie (type Harry's®)"
+    },
+    {
+      "ig": 85,
+      "carbs": 11.5,
+      "name": "Panais"
+    },
+    {
+      "ig": 85,
+      "carbs": 59.7,
+      "name": "Pop corn (sans sucre)"
+    },
+    {
+      "ig": 85,
+      "carbs": 80.5,
+      "name": "Riz soufflé, galettes de riz"
+    },
+    {
+      "ig": 85,
+      "carbs": 87.8,
+      "name": "Tapioca"
+    },
+       {
+      "ig": 75,
+      "carbs": 4.5,
+      "name": "Potiron"
+    },
+    {
+      "ig": 75,
+      "carbs": 21.3,
+      "name": "Riz au lait (sucré)"
+    },
+    {
+      "ig": 70,
+      "carbs": 54.2,
+      "name": "Baguette, pain blanc"
+    },
+    {
+      "ig": 70,
+      "carbs": 28.9,
+      "name": "Banane plantain (cuite)"
+    },
+    {
+      "ig": 15,
+      "carbs": 6.2,
+      "name": "Haricot mange-tout"
+    },
+    
+      quantity: 0,
+      calculatedCharge: 0,
+      calculatedGlucideProportion: 0
+    };
+
+    if (formSelectedAliment.aliment) {
+      selectedAliment.aliment = formSelectedAliment.aliment;
+      selectedAliment.quantity = formSelectedAliment.portion;
+      selectedAliment.calculatedGlucideProportion =
+        formSelectedAliment.aliment.carbs * formSelectedAliment.portion / 100;
+      selectedAliment.calculatedCharge =
+        formSelectedAliment.aliment.ig * selectedAliment.calculatedGlucideProportion / 100;
+
+      selectedAlimentsList.push(selectedAliment);
+      this.globalCharge += selectedAliment.calculatedCharge;
+    }
+
+    
+  }
+
+  getGlobalCharge(){
+    return this.globalCharge;
+  }
+  // constructor(private http: HttpClient) {}
+
+  // getAlimentsList() {
+  //   return this.http.get('/assets/aliments.json');
+  // }
+}

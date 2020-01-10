@@ -1,0 +1,64 @@
+form {
+display:flex;   
+justify-content: space-around; 
+}
+
+table {
+  background-color: lightslategrey;
+  color: white;
+  border-color: yellow;
+  border: 3px solid;
+  margin: auto;
+  width: auto;
+}
+
+th {
+  font-weight: bold;
+  border: 1px solid;
+  border-color: whitesmoke;
+}
+
+td {
+  border: 1px solid;
+  border-color: whitesmoke;
+}
+
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: 150%;
+}
+
+
+span {
+  font-size: 200%;
+}
+
+h2 {
+  text-align: center;
+}
+
+div {
+  /* display : flex; */
+  justify-content: center;
+  /* line-height: 0; */
+}
+
+select {
+  size: 50%;
+}
+
+.definitionPortion {
+  background-color: darkgrey;
+}
+
+.listePortionsAjoutees {
+  background-color: teal;
+}
+
+.chargetotale {
+  display: flex;
+  background-color: rgb(135, 199, 199);
+}

@@ -1,0 +1,17 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)">
+  <h2>Formulaire d'ajout</h2>
+  <div>
+    <label for ="name">Nom de l'aliment : </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <label for="ig">Indice : </label>
+    <input id="ig" type="number" formControlName="ig">
+  </div>
+  <div>
+    <label for="carbs">Proportion de glucides (g/100g) :</label>
+    <input id= "carbs" type="number" formControlName="carbs">
+  </div>
+
+  <button class="button" type="submit">Ajouter</button>
+</form>

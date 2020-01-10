@@ -1,0 +1,40 @@
+    <!-- <a [routerLink]="['details', alimentId]">{{aliment.name}}</a> -->
+    <app-ajout></app-ajout>
+
+
+    <h2>Listes des aliments enregistrés</h2>
+    <div>
+      <form [formGroup]="sortForm" (change)="sortAliment(sortForm.value)">
+
+        <p> Trier par : </p>
+        <select name="sortCriteria" for="sortCriteria" formControlName="sortCriteria">
+          <input type="select">
+          <option valeur=""></option>
+          <option id="name" valeur="name">nom</option>
+          <option id="ig" valeur="ig">index glycémique</option>
+          <option id="carbs" valeur="carbs">proportion de glucides</option>
+        </select>
+      </form>
+    </div>
+
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom de l'aliment</th>
+          <th>Index glycémique</th>
+          <th>Proportion de glucide (g/100g)</th>
+          <th> Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let aliment of myAlimentList | async; index as alimentId"> -->
+        <tr *ngFor="let aliment of myAlimentsList; index as alimentId">
+          <td>{{aliment.name}}</td>
+          <td class="center">{{aliment.ig}}</td>
+          <td class="center">{{aliment.carbs|number:'1.2-2'}}</td>
+          <td><button (click)='deleteAliment(alimentId)'>Supprimer</button></td>
+        </tr>
+      </tbody>
+    </table>
