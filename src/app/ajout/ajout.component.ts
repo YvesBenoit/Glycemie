@@ -1,21 +1,10 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  FormGroup
-} from '@angular/forms';
+import {Component,OnInit} from '@angular/core';
+import {FormGroup} from '@angular/forms';
 
-import {
-  FormBuilder
-} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 
-import {
-  AlimentService
-} from '../aliment.service';
-import {
-  Aliment
-} from '../aliment';
+import {AlimentService} from '../aliment.service';
+import {Aliment} from '../aliment';
 
 @Component({
   selector: 'app-ajout',
@@ -24,7 +13,7 @@ import {
 })
 export class AjoutComponent implements OnInit {
   addForm: FormGroup;
-  alimentsList: Aliment[];
+  aliments: Aliment[];
 
 
   constructor(
@@ -39,12 +28,12 @@ export class AjoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.alimentsList = this.alimentService.myAliments;
+    this.aliments = this.alimentService.aliments;
   }
 
   onSubmit(newAliment) {
-    if (newAliment.name) {
-      this.alimentsList.push(newAliment);
+    if (newAliment.name) {  // ne stocke newAliment dans aliments que si un nom a été saisi
+      this.aliments.push(newAliment);
     }
   }
 

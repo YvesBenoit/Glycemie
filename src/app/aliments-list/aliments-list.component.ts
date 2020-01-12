@@ -1,14 +1,6 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  AlimentService
-} from '../aliment.service';
-import {
-  FormGroup,
-  FormBuilder
-} from '@angular/forms';
+import {Component,OnInit} from '@angular/core';
+import {AlimentService} from '../aliment.service';
+import {FormGroup,FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-aliments-list',
@@ -18,8 +10,9 @@ import {
 export class AlimentsListComponent implements OnInit {
   sortForm: FormGroup;
 
-  myAlimentsList = this.alimentsService.myAliments.sort(this.tri);
+  myAlimentsList = this.alimentsService.aliments.sort(this.tri);
   // myAlimentList;
+ 
   constructor(private alimentsService: AlimentService,
     private formBuilder: FormBuilder,
   ) {

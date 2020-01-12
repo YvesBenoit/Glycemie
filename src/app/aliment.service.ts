@@ -14,10 +14,10 @@ import {
 })
 export class AlimentService {
 
-  Portions: Portion[] = [];
+  portions: Portion[] = [];
   globalCharge: number = 0;
 
-  myAliments: Aliment[] = [{
+  aliments: Aliment[] = [{
       "ig": 110,
       "carbs": 4.5,
       "name": "Bière"
@@ -1157,8 +1157,8 @@ export class AlimentService {
 
   constructor() {}
 
-  calcul(formPortion,PortionsList) {
-    const Portion: Portion = {
+  calcul(formPortion,portions) {
+    const portion: Portion = {
       aliment: {
         name: '',
         ig: 0,
@@ -1168,17 +1168,16 @@ export class AlimentService {
       calculatedCharge: 0,
       calculatedGlucideProportion: 0
     };
-
     if (formPortion.aliment) {
-      Portion.aliment = formPortion.aliment;
-      Portion.quantity = formPortion.portion;
-      Portion.calculatedGlucideProportion =
-        formPortion.aliment.carbs * formPortion.portion / 100;
-      Portion.calculatedCharge =
-        formPortion.aliment.ig * Portion.calculatedGlucideProportion / 100;
+      portion.aliment = formPortion.aliment;
+      portion.quantity = formPortion.quantity;
 
-      PortionsList.push(Portion);
-      this.globalCharge += Portion.calculatedCharge;
+      portion.calculatedGlucideProportion =
+        formPortion.aliment.carbs * formPortion.quantity / 100;
+      portion.calculatedCharge =
+        formPortion.aliment.ig * portion.calculatedGlucideProportion / 100;
+        portions.push(portion);  // stocke la portion courante dans la liste portions
+      this.globalCharge += portion.calculatedCharge;
     }
 
     
@@ -1192,4 +1191,5 @@ export class AlimentService {
   // getAlimentsList() {
   //   return this.http.get('/assets/aliments.json');
   // }
+  // a utiliser si recup des données entrantes par http methode à invoquer dans le formulaire
 }

@@ -4,13 +4,13 @@
     <div> 
       <label for="name">Aliment : </label>
       <select formControlName="aliment">
-        <option *ngFor='let aliment of myAlimentsList' [ngValue]="aliment">{{aliment.name}}</option>
+        <option *ngFor='let aliment of aliments' [ngValue]="aliment">{{aliment.name}}</option>
 
       </select>
     </div>
     <div>
       <label for="selectedPortion">Portion (g) : </label>
-      <input id="selectedPortion" type="number" formControlName="portion">
+      <input id="selectedPortion" type="number" formControlName="quantity">
     </div>
 
     <button class="button" type="submit">Ajouter</button>
@@ -34,12 +34,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let selectedAliment of portionsList; index as selectedAlimentId">
-        <td class="center">{{selectedAliment.aliment.name}}</td>
-        <td class="center">{{selectedAliment.aliment.ig}}</td>
-        <td class="center">{{selectedAliment.calculatedGlucideProportion|number:'1.2-2'}}</td>
-        <td class="center">{{selectedAliment.calculatedCharge|number:'1.2-2'}}</td>
-        <td><button (click)='deletePortion(selectedAlimentId)'>Supprimer</button></td>
+      <tr *ngFor="let portion of portions; index as portionId">
+        <td class="center">{{portion.aliment.name}}</td>
+        <td class="center">{{portion.aliment.ig}}</td>
+        <td class="center">{{portion.calculatedGlucideProportion|number:'1.2-2'}}</td>
+        <td class="center">{{portion.calculatedCharge|number:'1.2-2'}}</td>
+        <td><button (click)='deletePortion(portionId)'>Supprimer</button></td>
       </tr>
     </tbody>
   </table>

@@ -1,17 +1,7 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  AlimentService
-} from '../aliment.service';
-import {
-  FormGroup,
-  FormBuilder
-} from '@angular/forms';
-import {
-  Portion
-} from '../portion';
+import {Component,OnInit} from '@angular/core';
+import {AlimentService} from '../aliment.service';
+import {FormGroup,FormBuilder} from '@angular/forms';
+import {Portion} from '../portion';
 
 @Component({
   selector: 'app-calculator',
@@ -22,31 +12,31 @@ import {
 export class CalculatorComponent implements OnInit {
 
   portionDefinitionForm: FormGroup;
-  myAlimentsList = this.alimentsService.myAliments;
+  aliments = this.alimentsService.aliments;
   globalCharge;
-  portionsList: Portion[] = this.alimentsService.Portions;
+  portions: Portion[] = this.alimentsService.portions;
 
   constructor(private alimentsService: AlimentService,
     private formBuilder: FormBuilder, ) {
     this.portionDefinitionForm = this.formBuilder.group({
       aliment: '',
-      portion: ''
+      quantity: ''
     });
 
   }
 
   ngOnInit() {
-    this.globalCharge = this.alimentsService.getGlobalCharge();
+    this.globalCharge = this.alimentsService.getGlobalCharge();  // recupération de la charge calculée
   }
 
   onSubmit(formPortion) {
-    this.alimentsService.calcul(formPortion,this.portionsList);
-    this.globalCharge=this.alimentsService.getGlobalCharge();
+    this.alimentsService.calcul(formPortion,this.portions);  //arg1 la nouvelle portion, Arg2 : les portions
+    this.globalCharge=this.alimentsService.getGlobalCharge();  // recuperation de la nouvelle charge calculée
   }
 
   deletePortion(ind) {
-    this.globalCharge -= this.portionsList[ind].calculatedCharge;
-    this.portionsList.splice(ind, 1);
+    this.globalCharge -= this.portions[ind].calculatedCharge;  //décrement de la charge totale
+    this.portions.splice(ind, 1);   // suppression de la portion dans les portions
   }
 
 }
