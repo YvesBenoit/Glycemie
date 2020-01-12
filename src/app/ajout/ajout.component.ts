@@ -34,6 +34,7 @@ export class AjoutComponent implements OnInit {
   onSubmit(newAliment) {
     if (newAliment.name) {  // ne stocke newAliment dans aliments que si un nom a été saisi
       this.aliments.push(newAliment);
+      // this.aliments.sort(); 
     }
   }
 

@@ -1,13 +1,7 @@
-import {
-  Injectable
-} from '@angular/core';
+import {Injectable} from '@angular/core';
 // import {HttpClient} from '/@angular/common/http';
-import {
-  Aliment
-} from './aliment';
-import {
-  Portion
-} from './portion';
+import {Aliment} from './aliment';
+import {Portion} from './portion';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +10,7 @@ export class AlimentService {
 
   portions: Portion[] = [];
   globalCharge: number = 0;
+  sortCriteria: number = 0; 
 
   aliments: Aliment[] = [{
       "ig": 110,
@@ -1154,7 +1149,6 @@ export class AlimentService {
     }
   ];
 
-
   constructor() {}
 
   calcul(formPortion,portions) {
@@ -1171,20 +1165,34 @@ export class AlimentService {
     if (formPortion.aliment) {
       portion.aliment = formPortion.aliment;
       portion.quantity = formPortion.quantity;
-
       portion.calculatedGlucideProportion =
         formPortion.aliment.carbs * formPortion.quantity / 100;
       portion.calculatedCharge =
         formPortion.aliment.ig * portion.calculatedGlucideProportion / 100;
-        portions.push(portion);  // stocke la portion courante dans la liste portions
-      this.globalCharge += portion.calculatedCharge;
-    }
-
-    
+      portions.push(portion);  // stocke la portion courante dans la liste portions
+  
+      this.globalCharge += portion.calculatedCharge;  // increment de la charge globale
+    } 
   }
 
+
+  tri(a, b) {
+    console.log("Dans tri du service");
+    // console.log(this.sortCriteria);
+    return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
+    return (a.ig > b.ig) ? 1 : ((b.ig> a.ig) ? -1 : 0);
+    return (a.carbs > b.carbs) ? 1 : ((b.carbs> a.carbs) ? -1 : 0);
+  }
+
+
   getGlobalCharge(){
+    // console.log("globalCharge"+this.globalCharge);
     return this.globalCharge;
+  }
+  
+  getSortCriteria(){
+    console.log("sortCriteria"+this.sortCriteria);
+    return this.sortCriteria;
   }
   // constructor(private http: HttpClient) {}
 

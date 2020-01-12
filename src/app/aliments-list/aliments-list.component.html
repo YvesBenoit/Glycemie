@@ -15,9 +15,8 @@
           <option id="carbs" valeur="carbs">proportion de glucides</option>
         </select>
       </form>
+      
     </div>
-
-
 
     <table>
       <thead>
@@ -30,7 +29,7 @@
       </thead>
       <tbody>
         <!-- <tr *ngFor="let aliment of myAlimentList | async; index as alimentId"> -->
-        <tr *ngFor="let aliment of myAlimentsList; index as alimentId">
+        <tr *ngFor="let aliment of aliments; index as alimentId">
           <td>{{aliment.name}}</td>
           <td class="center">{{aliment.ig}}</td>
           <td class="center">{{aliment.carbs|number:'1.2-2'}}</td>
